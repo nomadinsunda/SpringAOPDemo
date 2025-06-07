@@ -12,8 +12,10 @@ import com.intheeast.aspectjsupport.declaringadvice.model.Account;
 @Component
 public class AccountValidationAspect {
 
-    // 특정 포인트컷을 정의: Account 인스턴스를 첫 번째 아규먼트[args(account,..)]로 받는 메서드 실행
-	// (..): 메서드의 파라미터 개수와 타입에 상관없이 일치합니다. 즉, 파라미터가 0개일 수도 있고, 여러 개일 수도 있습니다.
+    // 특정 포인트컷을 정의: 
+	// (..): 메서드의 파라미터 개수와 타입에 상관없이 일치. 
+	// 즉, 파라미터가 0개일 수도 있고, 여러 개일 수도 있음.
+	// Account 인스턴스를 첫 번째 아규먼트[args(account,..)]로 받는 메서드 실행
     @Pointcut("execution(* com.intheeast.aspectjsupport.declaringadvice.dao.*.*(..)) && args(account,..)")
     private void accountDataAccessOperation(Account account) {}
 

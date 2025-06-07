@@ -12,20 +12,23 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoggingAspect {
 
-	// (..): 메서드의 파라미터 개수와 타입에 상관없이 일치합니다. 즉, 파라미터가 0개일 수도 있고, 여러 개일 수도 있습니다.
+	// (..): 메서드의 파라미터 개수와 타입에 상관없이 일치. 
+	// 즉, 파라미터가 0개일 수도 있고, 여러 개일 수도 있음.
     @Before("execution(* com.intheeast.aspectjsupport.declaringadvice.service.*.*(..))")
     public void logBeforeMethod(JoinPoint joinPoint) {
         System.out.println("Method called: " + joinPoint.getSignature().getName());
     }
     
     // After Returning Advice
-    // (..): 메서드의 파라미터 개수와 타입에 상관없이 일치합니다. 즉, 파라미터가 0개일 수도 있고, 여러 개일 수도 있습니다.
+    // (..): 메서드의 파라미터 개수와 타입에 상관없이 일치합니다. 
+    // 즉, 파라미터가 0개일 수도 있고, 여러 개일 수도 있습니다.
+    // 타겟 메서드의 리턴 값을 확인할 수 있음.
     @AfterReturning(
         pointcut = "execution(* com.intheeast.aspectjsupport.declaringadvice.service.*.*(..))",
         returning = "result"
     )
     public void logAfterReturning(JoinPoint joinPoint, Object result) {
-        System.out.println("Method returned: " + 
+        System.out.println("logAfterReturning Advice : Method returned: " + 
         		joinPoint.getSignature().getName() + " with result = " + result);
     }
 

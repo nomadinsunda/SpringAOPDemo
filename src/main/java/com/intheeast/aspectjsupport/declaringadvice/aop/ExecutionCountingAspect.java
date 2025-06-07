@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 //@Component
 public class ExecutionCountingAspect {
 
-    // 스레드 안전한 카운터를 위한 AtomicInteger
+    // thread-safed 카운터를 위한 AtomicInteger
     private AtomicInteger executionCount = new AtomicInteger(0);
 
     @Around("execution(* com.intheeast.aspectjsupport.declaringadvice.service.MyService.*(..))")
