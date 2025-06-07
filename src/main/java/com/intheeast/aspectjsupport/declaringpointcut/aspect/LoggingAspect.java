@@ -22,7 +22,7 @@ public class LoggingAspect {
 	 withinSpecialComponent(), 
 	 targetHasSpecialComponent(), 
 	 methodWithValidatedArgs() 
-	 위 메서드들은 실제로 호출되지 않으며, 포인트컷을 정의하는 역할을 합니다.
+	 위 메서드들은 실제로 호출되지 않으며, 포인트컷을 정의하는 역할(포인트컷 시그니쳐)을 합니다.
 	 
 	 단지, 다음의 어드바이스 메서드의 포인트컷으로 활용됩니다
 	 예를 들어 logBeforeTransfer 메서드는 anyTransferOperation 포인트컷으로 타겟에 적용됩니다
@@ -43,15 +43,15 @@ public class LoggingAspect {
     private void anyTransferOperation() {}
 
     // 특정 클래스 내의 모든 메서드를 매칭하는 포인트컷
-    @Pointcut("within(com.intheeast.aspectj.declaringpointcut.service.TransferService)")
+    @Pointcut("within(com.intheeast.aspectjsupport.declaringpointcut.service.TransferService)")
     private void withinTransferService() {}
 
     // this 디지그네이터를 사용하여 프록시 객체의 타입에 따라 매칭
-    @Pointcut("this(com.intheeast.aspectj.declaringpointcut.service.TransferService)")
+    @Pointcut("this(com.intheeast.aspectjsupport.declaringpointcut.service.TransferService)")
     private void proxyIsTransferService() {}
 
     // target 디지그네이터를 사용하여 실제 타겟 객체의 타입에 따라 매칭
-    @Pointcut("target(com.intheeast.aspectj.declaringpointcut.service.SpecialService)")
+    @Pointcut("target(com.intheeast.aspectjsupport.declaringpointcut.service.SpecialService)")
     private void targetIsSpecialService() {}
 
     // args 디지그네이터를 사용하여 메서드의 아규먼트가 특정 타입인 경우 매칭
@@ -59,20 +59,22 @@ public class LoggingAspect {
     private void methodWithStringArg() {}
 
     // @annotation 디지그네이터를 사용하여 메서드에 특정 애노테이션이 있는 경우 매칭
-    @Pointcut("@annotation(com.intheeast.aspectj.declaringpointcut.annotation.Loggable)")
+    @Pointcut("@annotation(com.intheeast.aspectjsupport.declaringpointcut.annotation.Loggable)")
     private void loggableMethods() {}
 
     // @within 디지그네이터를 사용하여 클래스에 특정 애노테이션이 있는 경우 매칭
-    @Pointcut("@within(com.intheeast.aspectj.declaringpointcut.annotation.SpecialComponent)")
+    @Pointcut("@within(com.intheeast.aspectjsupport.declaringpointcut.annotation.SpecialComponent)")
     private void withinSpecialComponent() {}
 
     // @target 디지그네이터를 사용하여 실제 객체가 특정 애노테이션을 가지고 있는 경우 매칭
-    @Pointcut("@target(com.intheeast.aspectj.declaringpointcut.annotation.SpecialComponent)")
+    @Pointcut("@target(com.intheeast.aspectjsupport.declaringpointcut.annotation.SpecialComponent)")
     private void targetHasSpecialComponent() {}
 
     // @args 디지그네이터를 사용하여 메서드의 인자가 특정 애노테이션을 가진 타입인 경우 매칭
-    @Pointcut("@args(com.intheeast.aspectj.declaringpointcut.annotation.Validated)")
+    @Pointcut("@args(com.intheeast.aspectjsupport.declaringpointcut.annotation.Validated)")
     private void methodWithValidatedArgs() {}
+    
+    
 
     // 어드바이스 정의
     // transfer 메서드가 실행되기 전에 메서드 이름, 전달된 아규먼트, 타겟 클래스의 정보를 로그로 출력합니다.
@@ -146,5 +148,10 @@ public class LoggingAspect {
         System.out.println("Logging for methods with @Validated annotated arguments");
         System.out.println("Method: " + joinPoint.getSignature().getName());
         System.out.println("Arguments: " + Arrays.toString(joinPoint.getArgs()));
+    }
+    
+    @Before("bean(myServiceBean)")
+    public void beforeBeanExecution() {
+        System.out.println("🔥 Before advice applied to bean named 'myServiceBean'");
     }
 }

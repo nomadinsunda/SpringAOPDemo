@@ -8,7 +8,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class NotVeryUsefulAspect {
 
-    @Before("execution(* com.intheeast.aspectj.declaringaspect.service.MyService.*(..))")
+	// @Before 어노테이션의 value 속성의 값으로 다음과 같이 Pointcut expresson을 설정할 수 있음.
+    @Before("execution(* com.intheeast.aspectjsupport.declaringaspect.service.MyService.*(..))")
     public void beforeMethod() {
         System.out.println("Aspect is triggered before method execution");
     }

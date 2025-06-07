@@ -10,9 +10,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class AccountAspect {
 
-    @Around("execution(java.util.List<com.intheeast.aspectj.declaringadvice.model.Account> " +
-            "com.intheeast.aspectj.declaringadvice.service.AccountService.find*(..)) && " +
-            "com.intheeast.aspectj.declaringadvice.aspect.CommonPointcuts.inDataAccessLayer() && " +
+    @Around("execution(java.util.List<com.intheeast.aspectjsupport.declaringadvice.model.Account> " +
+            "com.intheeast.aspectjsupport.declaringadvice.service.AccountService.find*(..)) && " +
+            "com.intheeast.aspectjsupport.declaringadvice.aspect.CommonPointcuts.inDataAccessLayer() && " +
             "args(accountHolderNamePattern)")
     public Object preProcessQueryPattern(ProceedingJoinPoint pjp, String accountHolderNamePattern) throws Throwable {
         System.out.println("AccountAspect:preProcessQueryPattern:Calss: " + pjp.getTarget().getClass().getName());

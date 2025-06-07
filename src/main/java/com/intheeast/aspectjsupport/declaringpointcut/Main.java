@@ -3,6 +3,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.intheeast.aspectjsupport.declaringpointcut.config.AppConfig;
+import com.intheeast.aspectjsupport.declaringpointcut.service.MyService;
 import com.intheeast.aspectjsupport.declaringpointcut.service.SpecialService;
 import com.intheeast.aspectjsupport.declaringpointcut.service.TransferService;
 
@@ -21,5 +22,8 @@ public class Main {
         // SpecialService 메서드 호출
         specialService.specialOperation("Upgrade");
         specialService.anotherSpecialOperation("Parameter");
+        
+        MyService service = (MyService) context.getBean("myServiceBean");
+        service.serve();
     }
 }

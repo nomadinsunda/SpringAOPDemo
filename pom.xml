@@ -7,6 +7,8 @@
   <properties>
 	  <maven.compiler.source>17</maven.compiler.source>
       <maven.compiler.target>17</maven.compiler.target>
+      <spring.version>6.2.3</spring.version>
+	  <aspectj.version>1.9.22.1</aspectj.version>
   </properties>
   
   <dependencies>
@@ -15,21 +17,21 @@
 	  <dependency>
 	      <groupId>org.springframework</groupId>
 	      <artifactId>spring-context</artifactId>
-	      <version>6.1.6</version>
+	      <version>${spring.version}</version>
 	  </dependency>
 	  
 	  <!-- For springframe.mail -->
 	  <dependency>
 	 	<groupId>org.springframework</groupId>
 	 	<artifactId>spring-context-support</artifactId>
-	 	<version>6.1.6</version>
+	 	<version>${spring.version}</version>
 	  </dependency>
 	  
 	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-aop -->
 	<dependency>
 	    <groupId>org.springframework</groupId>
 	    <artifactId>spring-aop</artifactId>
-	    <version>6.1.6</version>
+	    <version>${spring.version}</version>
 	</dependency>
 
 	  
@@ -37,14 +39,14 @@
       <dependency>
 		  <groupId>org.springframework</groupId>
 	      <artifactId>spring-jdbc</artifactId>
-	      <version>6.1.6</version>
+	      <version>${spring.version}</version>
 	  </dependency>
 	  
 	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
 	  <dependency>
     	  <groupId>org.springframework</groupId>
     	  <artifactId>spring-test</artifactId>
-    	  <version>6.1.6</version>
+    	  <version>${spring.version}</version>
     	  <scope>test</scope>
 	  </dependency>
 	  
@@ -84,7 +86,7 @@
 	    <artifactId>mockito-core</artifactId>
 	    <version>5.2.0</version>
 	    <!-- <scope>test</scope> -->
-	</dependency>
+	  </dependency>
 
 	  
 	  <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
@@ -112,8 +114,7 @@
 
   </dependencies>
   
-  <build>
-	 
+  <build>	 
 	  <plugins>
 		  <plugin>
     		  <groupId>org.apache.maven.plugins</groupId>

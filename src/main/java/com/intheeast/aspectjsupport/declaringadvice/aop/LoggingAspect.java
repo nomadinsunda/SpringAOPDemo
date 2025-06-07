@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class LoggingAspect {
 
 	// (..): 메서드의 파라미터 개수와 타입에 상관없이 일치합니다. 즉, 파라미터가 0개일 수도 있고, 여러 개일 수도 있습니다.
-    @Before("execution(* com.intheeast.aspectj.declaringadvice.service.*.*(..))")
+    @Before("execution(* com.intheeast.aspectjsupport.declaringadvice.service.*.*(..))")
     public void logBeforeMethod(JoinPoint joinPoint) {
         System.out.println("Method called: " + joinPoint.getSignature().getName());
     }
@@ -21,7 +21,7 @@ public class LoggingAspect {
     // After Returning Advice
     // (..): 메서드의 파라미터 개수와 타입에 상관없이 일치합니다. 즉, 파라미터가 0개일 수도 있고, 여러 개일 수도 있습니다.
     @AfterReturning(
-        pointcut = "execution(* com.intheeast.aspectj.declaringadvice.service.*.*(..))",
+        pointcut = "execution(* com.intheeast.aspectjsupport.declaringadvice.service.*.*(..))",
         returning = "result"
     )
     public void logAfterReturning(JoinPoint joinPoint, Object result) {
@@ -32,7 +32,7 @@ public class LoggingAspect {
     // After Throwing Advice
     // (..): 메서드의 파라미터 개수와 타입에 상관없이 일치합니다. 즉, 파라미터가 0개일 수도 있고, 여러 개일 수도 있습니다.
     @AfterThrowing(
-        pointcut = "execution(* com.intheeast.aspectj.declaringadvice.service.*.*(..))",
+        pointcut = "execution(* com.intheeast.aspectjsupport.declaringadvice.service.*.*(..))",
         throwing = "error"
     )
     public void logAfterThrowing(JoinPoint joinPoint, Throwable error) {
@@ -41,7 +41,7 @@ public class LoggingAspect {
 
     // After (Finally) Advice
     // (..): 메서드의 파라미터 개수와 타입에 상관없이 일치합니다. 즉, 파라미터가 0개일 수도 있고, 여러 개일 수도 있습니다.
-    @After("execution(* com.intheeast.aspectj.declaringadvice.service.*.*(..))")
+    @After("execution(* com.intheeast.aspectjsupport.declaringadvice.service.*.*(..))")
     public void logAfterFinally(JoinPoint joinPoint) {
         System.out.println("Method finished: " + joinPoint.getSignature().getName());
     }

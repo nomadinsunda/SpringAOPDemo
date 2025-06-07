@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 //@Component
 public class TimingAspect {
 
-    @Around("execution(* com.intheeast.aspectj.declaringadvice.service.MyService.*(..))")
+    @Around("execution(* com.intheeast.aspectjsupport.declaringadvice.service.MyService.*(..))")
     public Object measureExecutionTime(ProceedingJoinPoint pjp) throws Throwable {
         long startTime = System.currentTimeMillis();
         System.out.println("Timer started for method: " + pjp.getSignature());
