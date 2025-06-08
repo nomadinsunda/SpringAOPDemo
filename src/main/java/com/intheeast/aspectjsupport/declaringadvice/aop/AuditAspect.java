@@ -23,7 +23,9 @@ public class AuditAspect {
     @Pointcut("@target(com.intheeast.aspectjsupport.declaringadvice.annotation.Auditable)")
     public void targetAuditableClass() {}
 
-    // @annotation: 특정 애노테이션이 적용된 메서드에 매칭
+    // @annotation: 특정 애노테이션[@Auditable]이 적용된 메서드에 매칭
+    // 시그니처에 파라미터 정의가 있는 경우는,
+    // 어드바이스 메서드에서 @Auditable 애노테이션 객체 자체를 직접 받기 위해서입니다.
     @Pointcut("@annotation(auditable)")
     public void methodWithAuditableAnnotation(Auditable auditable) {}
 
