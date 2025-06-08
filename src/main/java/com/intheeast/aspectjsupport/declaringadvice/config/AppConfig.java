@@ -17,13 +17,12 @@ import com.intheeast.aspectjsupport.declaringadvice.service.SampleService;
 @ComponentScan(basePackages = "com.intheeast.aspectjsupport.declaringadvice")
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 public class AppConfig {
-		
 	
 // SampleService가 제너릭 인터페이스 Sample<MyType>를 구현함으로써,
 // @EnableAspectJAutoProxy(proxyTargetClass = false)가 적용되지 않아서,
 // 직접 ProxyFactoryBean을 생성하려 했으나, 이것도 여의치 않음
-// 그래서 (proxyTargetClass = true)로 설정하면 해결됨.
-//	@Bean
+// 그러나 (proxyTargetClass = true)로 설정하면 해결됨.
+//	  @Bean
 //    public SampleService originalSampleService() {
 //        return new SampleService();
 //    }
@@ -41,7 +40,6 @@ public class AppConfig {
 //    public SampleAspect sampleAspect() {
 //        return new SampleAspect();
 //    }
-
 
     @Bean
     public ExecutionCountingAspect executionCountingAspect() {

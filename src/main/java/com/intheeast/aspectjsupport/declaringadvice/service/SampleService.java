@@ -10,6 +10,9 @@ import com.intheeast.aspectjsupport.declaringadvice.model.MyType;
 
 @Service
 public class SampleService implements Sample<MyType> {
+	public SampleService() {
+		System.out.println("SampleService default constructor!");
+	}
 	
 	@AuditableCode(AuditCode.USER_ACTION)
     public void sampleMethod(String data) {
