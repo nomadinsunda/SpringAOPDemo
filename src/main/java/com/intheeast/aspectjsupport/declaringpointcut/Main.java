@@ -1,4 +1,6 @@
 package com.intheeast.aspectjsupport.declaringpointcut;
+import java.lang.annotation.Annotation;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -22,6 +24,9 @@ public class Main {
         // SpecialService 메서드 호출
         specialService.specialOperation("Upgrade");
         specialService.anotherSpecialOperation("Parameter");
+        
+        Class<SpecialService> clazz = (Class<SpecialService>) specialService.getClass();
+        Annotation[] annotations = clazz.getAnnotations();
         
         MyService service = (MyService) context.getBean("myServiceBean");
         service.serve();
