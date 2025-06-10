@@ -11,7 +11,7 @@ import com.intheeast.aspectjsupport.enablingaspectjsupport.aopdemo.service.Loggi
 
 @Configuration
 @ComponentScan("com.intheeast.aspectjsupport.enablingaspectjsupport.aopdemo")
-@EnableAspectJAutoProxy(proxyTargetClass = true) // 인터페이스 없어도 CGLIB으로 처리
+@EnableAspectJAutoProxy(proxyTargetClass = true) // 인터페이스 있어도 CGLIB으로 처리
 public class AppConfig {
 
     @Bean

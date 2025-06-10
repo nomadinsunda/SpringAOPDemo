@@ -5,7 +5,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.intheeast.aspectjsupport.enablingaspectjsupport.basedinterface.confing.AppConfig;
-import com.intheeast.aspectjsupport.enablingaspectjsupport.basedinterface.service.FooService;
+import com.intheeast.aspectjsupport.enablingaspectjsupport.basedinterface.service.*;
 
 
 public class Main {

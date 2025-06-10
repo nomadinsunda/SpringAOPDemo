@@ -25,12 +25,13 @@ import com.intheeast.aspectjsupport.enablingaspectjsupport.basedsubclass.service
  *    - 특징: 클래스 기반 프록시 생성. final 클래스나 final 메서드는 프록싱 불가
  */ // 그러나...proxyTargetClass가 디폴트로 false라고 할지라도
     // 강제로 cglib을 사용해서 타겟 클래스를 프록시 클래스로 생성함.
-@EnableAspectJAutoProxy//(proxyTargetClass = true)
+@EnableAspectJAutoProxy(proxyTargetClass = false)
 public class AppConfig {
 	
 	@Bean
     public FooService fooService() {
-        return new FooService();
+        FooService fooService = new FooService();
+        return fooService;
     }
 
     @Bean

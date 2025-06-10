@@ -40,12 +40,14 @@ public class LoggingAspect {
 
     // 특정 메서드 이름을 매칭하는 포인트컷
     @Pointcut("execution(* transfer(..))")
-    private void anyTransferOperation() {}
-
+    private void anyTransferOperation() {}    
+    
     // 특정 클래스 내의 모든 메서드를 매칭하는 포인트컷
     @Pointcut("within(com.intheeast.aspectjsupport.declaringpointcut.service.TransferService)")
     private void withinTransferService() {}
 
+    
+    
     // this 디지그네이터를 사용하여 프록시 객체의 타입에 따라 매칭
     @Pointcut("this(com.intheeast.aspectjsupport.declaringpointcut.service.TransferService)")
     private void proxyIsTransferService() {}
@@ -70,7 +72,7 @@ public class LoggingAspect {
     @Pointcut("@target(com.intheeast.aspectjsupport.declaringpointcut.annotation.SpecialComponent)")
     private void targetHasSpecialComponent() {}
 
-    // @args 디지그네이터를 사용하여 메서드의 인자가 특정 애노테이션을 가진 타입인 경우 매칭
+    // @args 디지그네이터를 사용하여 메서드의 아규먼트가 특정 애노테이션을 가진 타입인 경우 매칭
     @Pointcut("@args(com.intheeast.aspectjsupport.declaringpointcut.annotation.Validated)")
     private void methodWithValidatedArgs() {}
     
