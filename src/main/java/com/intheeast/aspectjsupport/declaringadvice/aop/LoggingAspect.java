@@ -16,6 +16,8 @@ public class LoggingAspect {
 	// 즉, 파라미터가 0개일 수도 있고, 여러 개일 수도 있음.
     @Before("execution(* com.intheeast.aspectjsupport.declaringadvice.service.*.*(..))")
     public void logBeforeMethod(JoinPoint joinPoint) {
+    	String str = joinPoint.getClass().getName();
+    	
         System.out.println("Method called: " + joinPoint.getSignature().getName());
     }
     
@@ -28,12 +30,18 @@ public class LoggingAspect {
         returning = "result"
     )
     public void logAfterReturning(JoinPoint joinPoint, Object result) {
-        System.out.println("logAfterReturning Advice : Method returned: " + 
+    	//Class clazzz = void.class; // 특정 메서드가 리턴할 값이 없을 경우
+//    	String clazzName = joinPoint.getClass().getName();
+//    	System.out.println("logAfterReturning Advice : Target Class" + clazzName);
+        System.out.println("Method returned: " + 
         		joinPoint.getSignature().getName() + " with result = " + result);
     }
 
     // After Throwing Advice
     // (..): 메서드의 파라미터 개수와 타입에 상관없이 일치합니다. 즉, 파라미터가 0개일 수도 있고, 여러 개일 수도 있습니다.
+    // 타겟 클래스 메서드에서 예외가 발생하면,
+    // 이 메서드가 이 예외를 처리하지 않고
+    // 'throws' 하면 이 어드바이스가 적용이 됨.
     @AfterThrowing(
         pointcut = "execution(* com.intheeast.aspectjsupport.declaringadvice.service.*.*(..))",
         throwing = "error"

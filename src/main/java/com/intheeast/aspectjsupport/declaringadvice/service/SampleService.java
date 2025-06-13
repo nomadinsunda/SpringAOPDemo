@@ -18,6 +18,10 @@ public class SampleService implements Sample<MyType> {
     public void sampleMethod(String data) {
         System.out.println("Executing sampleMethod with data: " + data);
     }
+	
+	public void sampleGenericMethod(MyType param, Integer age, String name) {
+        System.out.println("sampleGenericMethod2 called");
+    }
 
     public void sampleGenericMethod(MyType param) {
         System.out.println("sampleGenericMethod called with param: " + param);

@@ -7,6 +7,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import com.intheeast.aspectjsupport.enablingaspectjsupport.basedinterface.aspect.MyAspect;
 import com.intheeast.aspectjsupport.enablingaspectjsupport.basedinterface.service.FooService;
 import com.intheeast.aspectjsupport.enablingaspectjsupport.basedinterface.service.FooServiceImpl;
+import com.intheeast.aspectjsupport.enablingaspectjsupport.basedinterface.service.HelloService;
 
 @Configuration
 ///////////////////////////////////////////////////////////////
@@ -32,6 +33,13 @@ public class AppConfig {
     public FooService fooService() {
         return new FooServiceImpl();
     }
+	
+	@Bean
+	public HelloService helloServie() {
+		// fooService() 호출하면 어떻게 되나요?
+		// : 
+		return new HelloService(fooService()); // 
+	}
 
     @Bean
     public MyAspect myAspect() {

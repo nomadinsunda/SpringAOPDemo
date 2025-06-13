@@ -35,7 +35,7 @@ public class Main {
 
         thread1.start();
         thread2.start();
-
+        
         try {
             thread1.join();
             thread2.join();
@@ -89,7 +89,7 @@ public class Main {
         Account invalidAccount = new Account();
         invalidAccount.setId("678");
         invalidAccount.setOwnerName("Jane Doe");
-        invalidAccount.setBalance(-500.0);
+        invalidAccount.setBalance(-500);
         try {
             accountDao.updateAccount(invalidAccount);
         } catch (IllegalArgumentException e) {
@@ -127,7 +127,7 @@ public class Main {
         List<MyType> myTypeList = Arrays.asList(new MyType("Test1"), new MyType("Test2"));
         sampleService.sampleGenericCollectionMethod(myTypeList);
         
-        
+        sampleService.sampleGenericMethod(new MyType("Test"), 10, "John");
         sampleService.sampleGenericMethod(new MyType("Example"));
         sampleService.sampleGenericCollectionMethod(myTypeList);
 
@@ -135,6 +135,9 @@ public class Main {
         
         accountService = context.getBean(AccountService.class);
         accountService.findAccounts("doe");
+        
+        MyService myService = context.getBean(MyService.class);
+        myService.performTask();
 
     }
 }

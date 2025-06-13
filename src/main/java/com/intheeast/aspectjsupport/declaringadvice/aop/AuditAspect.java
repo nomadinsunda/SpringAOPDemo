@@ -16,9 +16,9 @@ public class AuditAspect {
     @Pointcut("@within(com.intheeast.aspectjsupport.declaringadvice.annotation.Auditable)")
     public void withinAuditableClass() {}
 
-    // @target: 특정 애노테이션이 적용된 객체의 모든 메서드에 매칭
+    // @target: 특정 애노테이션이 적용된 타겟 객체의 모든 메서드에 매칭
     // 이 포인트컷은 런타임 시점에 프록시 객체가 생성될 때, 
-    // 해당 객체의 클래스가 @Auditable 애노테이션을 가지고 있는지 확인. 
+    // 해당 타겟 객체의 클래스가 @Auditable 애노테이션을 가지고 있는지 확인. 
     // 그 후 해당 객체의 모든 메서드가 포인트컷에 매칭됩니다.
     @Pointcut("@target(com.intheeast.aspectjsupport.declaringadvice.annotation.Auditable)")
     public void targetAuditableClass() {}
@@ -31,7 +31,7 @@ public class AuditAspect {
 
     // (..): 메서드의 파라미터 개수와 타입에 상관없이 일치. 
     // 즉, 파라미터가 0개일 수도 있고, 여러 개일 수도 있습니다.
-    // @args: 특정 타입의 인자를 전달받는 메서드에 매칭
+    // @args: 특정 타입의 아규먼트를 전달받는 메서드에 매칭
     // @args(com.intheeast.aspectjsupport.declaringadvice.annotation.Auditable)
     //  : 이 애노테이션이 파라미터로 전달되는 객체에 적용되어 있어야 한다는 의미입니다.
     @Pointcut("execution(* com.intheeast.aspectjsupport.declaringadvice.service.*.*(..)) && "

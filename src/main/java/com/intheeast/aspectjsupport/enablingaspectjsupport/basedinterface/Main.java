@@ -1,6 +1,7 @@
 package com.intheeast.aspectjsupport.enablingaspectjsupport.basedinterface;
 
 import org.springframework.aop.support.AopUtils;
+import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -11,6 +12,9 @@ import com.intheeast.aspectjsupport.enablingaspectjsupport.basedinterface.servic
 public class Main {
 
 	public static void main(String[] args) {
+		
+		DefaultListableBeanFactory dlbf;
+		
 		ApplicationContext context = 
         		new AnnotationConfigApplicationContext(AppConfig.class);
 
@@ -26,6 +30,26 @@ public class Main {
 		
 		fooService.helloFoo();
 		
+		for (String beanName : context.getBeanDefinitionNames()) {
+		    Object bean = context.getBean(beanName);
+		    Class<?> beanClass = bean.getClass();
+
+		    // Check whether the given object is a JDK dynamic proxy or a CGLIB proxy.
+		    //boolean isAopProxy = AopUtils.isAopProxy(bean);
+		    boolean isCglib = AopUtils.isCglibProxy(bean);
+		    boolean isJdk = AopUtils.isJdkDynamicProxy(bean);
+
+		    System.out.printf("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+		    System.out.printf("빈 이름: %-20s \n"
+		    		+ " cglib : %-5s \n" 
+		    		+ " dynamic : %-5s \n"
+		    		+ " 타입: %s%n ",
+		    		beanName, 
+		    		isCglib ? "예" : "아니오", 
+		    		isJdk ? "예" : "아니오", 
+		    		beanClass.getName());
+		    System.out.printf("-----------------------------------------------------------------\n");
+		}
 	}
 
 }
