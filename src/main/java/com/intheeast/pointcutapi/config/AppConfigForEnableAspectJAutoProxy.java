@@ -11,6 +11,8 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import com.intheeast.pointcutapi.advice.ExceptionHandlingAdvice;
 import com.intheeast.pointcutapi.advice.ExecutionTimeAdvice;
 import com.intheeast.pointcutapi.advice.LoggingAdvice;
+import com.intheeast.pointcutapi.pointcut.CustomPointcut;
+import com.intheeast.pointcutapi.pointcut.MyPointcutAdvisor;
 import com.intheeast.pointcutapi.service.AnotherService;
 import com.intheeast.pointcutapi.service.MyService;
 
@@ -29,6 +31,7 @@ public class AppConfigForEnableAspectJAutoProxy {
         pointcut.setExpression("execution(* com.intheeast.pointcutapi.service.MyService.myMethod(..))");
         return pointcut;
     }
+        
 
     @Bean
     public DefaultPointcutAdvisor loggingAdvisor(@Qualifier("customPointcut") Pointcut pointcut) {
@@ -48,6 +51,11 @@ public class AppConfigForEnableAspectJAutoProxy {
     @Bean
     public DefaultPointcutAdvisor aspectJLoggingAdvisor(@Qualifier("aspectJPointcut") Pointcut pointcut) {
         return new DefaultPointcutAdvisor(pointcut, new LoggingAdvice());
+    }
+    
+    @Bean
+    public MyPointcutAdvisor retryAdvisor() {
+        return new MyPointcutAdvisor();
     }
 
     @Bean

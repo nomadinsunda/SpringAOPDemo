@@ -48,6 +48,7 @@ public class SpringAOPExample {
         // AnotherService 빈을 가져와서 메서드를 호출합니다.
         AnotherService anotherService = context.getBean(AnotherService.class);
         anotherService.differentMethod(123);  // CustomPointcut이 적용됩니다.
+        anotherService.performOperation("add");
 
         // 스프링 컨텍스트를 종료하여 리소스를 해제합니다.
         context.close();	

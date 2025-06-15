@@ -54,7 +54,7 @@ public class AppConfig {
         return new DefaultPointcutAdvisor(mySpecialPointcut, debugInterceptor);
     }
     
- // 두 번째 어드바이저 빈 정의
+    // 두 번째 어드바이저 빈 정의
     @Bean
     public DefaultPointcutAdvisor anotherAdvisor(MySpecialPointcut mySpecialPointcut, AnotherInterceptor anotherInterceptor) {
         return new DefaultPointcutAdvisor(mySpecialPointcut, anotherInterceptor);
