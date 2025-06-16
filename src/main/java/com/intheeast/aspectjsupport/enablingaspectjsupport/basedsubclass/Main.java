@@ -1,6 +1,7 @@
 package com.intheeast.aspectjsupport.enablingaspectjsupport.basedsubclass;
 
 import org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator;
+import org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator;
 import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory;
 import org.springframework.context.ApplicationContext;
@@ -15,6 +16,7 @@ public class Main {
 	public static void main(String[] args) {
 		AbstractAutowireCapableBeanFactory aacbf;
 		AnnotationAwareAspectJAutoProxyCreator  AAJPC;
+		AbstractAutoProxyCreator aapc;
 		
 		ApplicationContext context = 
         		new AnnotationConfigApplicationContext(AppConfig.class);

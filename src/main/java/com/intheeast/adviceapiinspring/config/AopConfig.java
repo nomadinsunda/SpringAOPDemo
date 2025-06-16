@@ -55,6 +55,7 @@ public class AopConfig {
         // :위 생성자는 모든 메서드와 일치하는 DefaultPointcutAdvisor를 생성합니다.
         // Pointcut TRUE = TruePointcut.INSTANCE; // 항상 일치하는 정식 Pointcut 인스턴스입니다.
         //  Pointcut.TRUE will be used as Pointcut
+        // 현재 SimpleService의 모든 메서드에게 다음과 같은 인터셉터 체인이 지원된다
         proxyFactoryBean.addAdvisor(new DefaultPointcutAdvisor(countingBeforeAdvice()));
         proxyFactoryBean.addAdvisor(new DefaultPointcutAdvisor(debugInterceptor()));
         proxyFactoryBean.addAdvisor(new DefaultPointcutAdvisor(countingAfterReturningAdvice()));

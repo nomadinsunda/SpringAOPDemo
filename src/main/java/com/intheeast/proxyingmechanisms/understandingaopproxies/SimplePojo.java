@@ -1,6 +1,12 @@
 package com.intheeast.proxyingmechanisms.understandingaopproxies;
 
 public class SimplePojo implements Pojo {
+	
+//	private String hello = "Hello";
+//	
+//	public SimplePojo() {
+//		
+//	}
 
     @Override
     public void foo() {

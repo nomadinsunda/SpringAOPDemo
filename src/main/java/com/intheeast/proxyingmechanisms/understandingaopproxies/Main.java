@@ -8,9 +8,12 @@ public class Main {
         SimplePojo target = new SimplePojo();
 
         // 프록시 팩토리 생성
+        // Factory for AOP proxies for programmatic use, 
+        // rather than via declarative setup in a bean factory. This class provides a simple way of obtaining and configuring AOP proxy instances in custom user code.
         ProxyFactory factory = new ProxyFactory(target);
-        factory.addInterface(Pojo.class); // 인터페이스 기반 프록시
+        factory.addInterface(Pojo.class); // 인터페이스 기반 프록시(JDK Dynamic Proxy)
         factory.addAdvice(new RetryAdvice());
+        //factory.setProxyTargetClass(true);
 
         // 프록시 생성
         Pojo proxy = (Pojo) factory.getProxy();

@@ -19,8 +19,11 @@ public class CustomPointcut implements Pointcut {
     @Override
     public MethodMatcher getMethodMatcher() {
         return new MethodMatcher() {
-        	// Spring AOP는 프록시 생성 시점에 matches(Method, Class)만 사용해서 Advisor 적용 여부를 미리 결정
-            @Override
+        	
+        	// 1. Spring AOP는 프록시 생성 시점에 matches(Method, Class)만 사용해서 Advisor 적용 여부를 미리 결정
+        	// : matching 결과를 캐시에 저장할 수 있음.
+        	// 2. isRuntime가 false를 리턴하면, 이 메서드가 사용됨.
+        	@Override
             public boolean matches(Method method, Class<?> targetClass) {
                 // 특정 어노테이션이 있는 메서드와 메서드 이름이 "differentMethod"인 경우 매칭
                 return method.isAnnotationPresent(CustomAnnotation.class)
@@ -33,6 +36,8 @@ public class CustomPointcut implements Pointcut {
             	return false; 
             }
 
+            // 캐시에 저장되어 있는 매칭 정보를 사용하지 않고,
+            // 런타임때 항상 체크하겠다라는 의미!!!
             @Override
             public boolean matches(Method method, Class<?> targetClass, Object... args) {
                 // 아규먼트가 String 타입인 경우 매칭

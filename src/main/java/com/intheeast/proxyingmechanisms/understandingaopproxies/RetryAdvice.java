@@ -5,6 +5,7 @@ import org.aopalliance.intercept.MethodInvocation;
 
 public class RetryAdvice implements MethodInterceptor {
 
+	// Pojo의 bar(), foo()의 메서드의 around advice로 사용됨
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
         System.out.println("[RetryAdvice] " + invocation.getMethod().getName() + "() intercepted");

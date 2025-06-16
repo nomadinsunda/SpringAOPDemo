@@ -8,7 +8,8 @@ public class DebugInterceptor implements MethodInterceptor {
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
         System.out.println("Before: invocation=[" + invocation + "]");
-        // [Interceptor1] → [Interceptor2] → ... → [Target Method]
+        // Interceptor chain
+        // [Interceptor1] → [Interceptor2] → ... → [Target class Method]
         Object rval = invocation.proceed();
         System.out.println("Invocation returned with value: " + rval);
         return rval;
