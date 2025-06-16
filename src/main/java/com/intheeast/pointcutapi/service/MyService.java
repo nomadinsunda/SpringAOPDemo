@@ -2,7 +2,6 @@ package com.intheeast.pointcutapi.service;
 
 public class MyService {
 	
-    @CustomAnnotation
     public void myMethod() {
         System.out.println("Executing myMethod");
     }
