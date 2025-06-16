@@ -11,14 +11,15 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.interceptor.TransactionAttributeSourceAdvisor;
 import org.springframework.transaction.interceptor.TransactionInterceptor;
 
-import com.intheeast.conciseproxydefinitions.transaction.SimpleTransactionManager;
 import com.intheeast.usingtheautoproxyfacility.bean.BusinessObject1;
 import com.intheeast.usingtheautoproxyfacility.bean.BusinessObject2;
 import com.intheeast.usingtheautoproxyfacility.bean.MyBean;
+import com.intheeast.usingtheautoproxyfacility.transaction.SimpleTransactionManager;
 
 @Configuration
 @EnableTransactionManagement
-// 만약 BusinessObject1/2가 특정 인터페이스를 구현하지 않는다면, proxyTargetClass 속성을 true로 설정해야 합니다
+// 만약 BusinessObject1/2가 특정 인터페이스를 구현하지 않는다면, 
+// proxyTargetClass 속성을 true로 설정해야 합니다
 //@EnableTransactionManagement(proxyTargetClass = true)
 public class AppConfig {
 
@@ -33,6 +34,7 @@ public class AppConfig {
     }
 
     // SimpleTraceInterceptor 정의
+    // 메서드 호출 전후에 메시지를 콘솔에 출력하는 간단한 AOP Advice
     @Bean
     public SimpleTraceInterceptor myInterceptor() {
         return new SimpleTraceInterceptor();
@@ -57,6 +59,7 @@ public class AppConfig {
     }
 
     // Transaction attribute source advisor 정의
+    // : @Transactional을 인식하는 포인트컷 + Advice(Interceptor) 연결
     @Bean
     public TransactionAttributeSourceAdvisor transactionAttributeSourceAdvisor(TransactionInterceptor transactionInterceptor) {
         TransactionAttributeSourceAdvisor advisor = new TransactionAttributeSourceAdvisor();
@@ -65,6 +68,7 @@ public class AppConfig {
     }
 
     // Transaction interceptor 정의
+    // : 트랜잭션 start/commit/rollback을 담당
     @Bean
     public TransactionInterceptor transactionInterceptor() {
         TransactionInterceptor interceptor = new TransactionInterceptor();
