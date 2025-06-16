@@ -6,6 +6,7 @@ import com.intheeast.pointcutapi.config.AppConfig;
 import com.intheeast.pointcutapi.config.AppConfigForEnableAspectJAutoProxy;
 import com.intheeast.pointcutapi.service.AnotherService;
 import com.intheeast.pointcutapi.service.MyService;
+import com.intheeast.pointcutapi.service.NotificationService;
 import com.intheeast.pointcutapi.service.OrderService;
 import com.intheeast.pointcutapi.service.ProductService;
 import com.intheeast.pointcutapi.service.SimpleService;
@@ -29,6 +30,8 @@ public class SpringAOPExample {
         UserAccountService userAccountService = (UserAccountService) context.getBean("userAccountServiceProxy");
 
         ProductService productService = (ProductService) context.getBean("productServiceProxy");
+
+        NotificationService notificationService = (NotificationService) context.getBean("notificationServiceProxy");
 
         // 메서드 실행 테스트
         myService.myMethod();              // AspectJ 포인트컷 및 커스텀 포인트컷 모두 적용
@@ -80,7 +83,14 @@ public class SpringAOPExample {
         System.out.println("\n--- updateStock ---");
         productService.updateStock("A100", 10);  // 이 메서드는 "get"으로 시작하지 않기 때문에 어드바이스 미적용
 
-        
+        System.out.println("\n--- setRecipient ---");
+        notificationService.setRecipient("user@example.com");
+
+        System.out.println("\n--- absquatulate ---");
+        notificationService.absquatulate();
+
+        System.out.println("\n--- sendNotification ---");
+        notificationService.sendNotification("System maintenance at midnight.");
         context.close(); 
 	}
 	
