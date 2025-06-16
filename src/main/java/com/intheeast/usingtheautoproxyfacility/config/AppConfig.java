@@ -67,8 +67,12 @@ public class AppConfig {
         return advisor;
     }
 
-    // Transaction interceptor 정의
-    // : 트랜잭션 start/commit/rollback을 담당
+    // Spring AOP 기반의 선언적 트랜잭션 처리를 위해 핵심적으로 동작하는 
+    // 트랜잭션 Advice(Interceptor)를 설정하는 부분
+    // @Transactional이 붙은 메서드가 호출될 때 이 인터셉터가 가로채어 다음을 수행합니다:
+    // - 트랜잭션 시작
+    // - 메서드 실행
+    // - 예외 유무에 따라 커밋 또는 롤백
     @Bean
     public TransactionInterceptor transactionInterceptor() {
         TransactionInterceptor interceptor = new TransactionInterceptor();
